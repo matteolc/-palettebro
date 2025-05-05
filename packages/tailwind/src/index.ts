@@ -3,7 +3,7 @@ import { getPaletteColors } from './theming/colors';
 import { injectThemes } from './inject-themes';
 import type { PluginOptions } from './types';
 import defaultPluginOptions from './options';
-import { log } from './logger';
+import { version } from '../package.json';
 
 export const getColorUtilities = (options: PluginOptions) =>
   getPaletteColors(options);
@@ -12,14 +12,20 @@ const twPlugin: ReturnType<typeof plugin.withOptions<PluginOptions>> =
   plugin.withOptions<PluginOptions>(
     (options?: PluginOptions): ((api: PluginAPI) => void) => {
       return ({ addBase, addVariant }) => {
-        log('SW5pdGlhbGl6aW5nIFRhaWx3aW5kIHBsdWdpbg==');
-
         injectThemes(addBase, { ...defaultPluginOptions, ...options });
         addVariant('dark', '&:where([data-theme=dark], [data-theme=dark] *)');
       };
     },
     (options?: PluginOptions): Partial<Config> => {
-      log('RXh0ZW5kaW5nIFRhaWx3aW5kIHRoZW1lIGNvbG9ycw==');
+      console.info(
+        [
+          atob('Lyoh'),
+          decodeURIComponent('%F0%9F%8F%84'),
+          atob('QHBhbGV0dGVicm8vdGFpbHdpbmQtdGhlbWU='),
+          version,
+          atob('Ki8='),
+        ].join(' '),
+      );
 
       return {
         theme: {
