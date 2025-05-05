@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@plugin '@palettebro/tailwind' {
+  reverseLightDarkShades: true;
+  primary: #412f9c;
+}
+
+:root {
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+
+html,
+body {
+  @apply bg-background;
+  @apply min-h-screen;
+}
+
+@layer utilities {
+  .title-gradient {
+    @apply bg-linear-45;
+    @apply from-primary to-accent via-secondary;
+    animation: gradient 4s ease infinite;
+    background-size: 200% 200%;
+  }
+}

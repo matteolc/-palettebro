@@ -1,0 +1,45 @@
+{
+  "name": "@palettebro/palettebro",
+  "private": false,
+  "version": "0.1.1",
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo run format-and-lint",
+    "lint:fix": "turbo run format-and-lint:fix",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format-and-lint": "biome check .",
+    "format-and-lint:fix": "biome check . --write",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo run build && changeset publish",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@changesets/cli": "^2.29.2",
+    "@types/node": "^22.15.3",
+    "@vitest/coverage-v8": "^3.1.2",
+    "lefthook": "^1.11.12",
+    "turbo": "^2.5.2",
+    "tsup": "^8.4.0",
+    "typescript": "5.8.3",
+    "vitest": "^3.1.2"
+  },
+  "packageManager": "pnpm@8.15.6",
+  "engines": {
+    "node": ">=22"
+  },
+  "authors": [
+    {
+      "name": "Matteo La Cognata",
+      "email": "matteo.lacognata@nearform.com",
+      "url": "https://github.com/matteolc"
+    }
+  ],
+  "license": "MIT",
+  "resolutions": {
+    "@types/node": "^22.15.3"
+  }
+}

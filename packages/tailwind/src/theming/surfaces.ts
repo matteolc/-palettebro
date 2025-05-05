@@ -1,0 +1,22 @@
+/* MUI-like tokens used for surface colors */
+export default {
+  background: 'var(--color-background)',
+  'on-background': 'var(--color-on-background)',
+  surface: 'var(--color-surface)',
+  'surface-dim': 'var(--color-surface-dim)',
+  'surface-bright': 'var(--color-surface-bright)',
+  'surface-container-highest': 'var(--color-surface-container-highest)',
+  'surface-container-high': 'var(--color-surface-container-high)',
+  'surface-container': 'var(--color-surface-container)',
+  'surface-container-low': 'var(--color-surface-container-low)',
+  'surface-container-lowest': 'var(--color-surface-container-lowest)',
+  'on-surface': 'var(--color-on-surface)',
+  'surface-variant': 'var(--color-surface-variant)',
+  'on-surface-variant': 'var(--color-on-surface-variant)',
+  'inverse-surface': 'var(--color-inverse-surface)',
+  'inverse-on-surface': 'var(--color-inverse-on-surface)',
+  outline: 'var(--color-outline)',
+  'outline-variant': 'var(--color-outline-variant)',
+  shadow: 'var(--color-shadow)',
+  scrim: 'var(--color-scrim)',
+};
