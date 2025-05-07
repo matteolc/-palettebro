@@ -45,6 +45,10 @@ export const getPaletteColors = (options: PluginOptions) => {
     }[frameworkCompatibilty ?? FrameworkCompatibilityEnum.shadcn];
 
   return {
+    ...colors.reduce(
+      (acc, color) => Object.assign(acc, getColorVariants(color)),
+      {},
+    ),
     ...colors.reduce<
       Record<
         string,
@@ -54,7 +58,6 @@ export const getPaletteColors = (options: PluginOptions) => {
       >
     >((acc, color) => {
       acc[color] = {
-        ...getColorVariants(color),
         ...getColorShades(color),
         ...shadcn_getColorVariants(color),
       };

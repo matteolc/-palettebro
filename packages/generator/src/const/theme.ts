@@ -4,7 +4,7 @@ import { createEnum } from '../utils/create-enum';
 export const ColorSchemes = ['light', 'dark'] as const;
 export const ThemeColorSchemeEnum = createEnum(ColorSchemes);
 
-export const ThemeVariants = ['mui', 'static', 'dynamic', 'kobayashi'] as const;
+export const ThemeVariants = ['mui', 'static', 'dynamic'] as const;
 export const ThemeVariantEnum = createEnum(ThemeVariants);
 
 export const StaticThemePresets = [
@@ -40,17 +40,6 @@ export const MuiThemePresets = [
   'vibrant',
 ] as const;
 export const MuiThemePresetEnum = createEnum(MuiThemePresets);
-
-export const GenerativeThemeModes = ['transformer', 'diffusion', 'creative'] as const;
-export const GenerativeThemeModeEnum = createEnum(GenerativeThemeModes);
-
-export const GenerativeThemePages = [
-  'website-magazine',
-  'brand-2',
-  'brand-3',
-  'website-1',
-] as const;
-export const GenerativeThemePageEnum = createEnum(GenerativeThemePages);
 
 export const GenerativeThemePresets = [
   'default',

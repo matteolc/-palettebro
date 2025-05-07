@@ -5,8 +5,6 @@ import type {
   ColorSchemes,
   ColorShadesPresets,
   FrameworkCompatibilities,
-  GenerativeThemeModes,
-  GenerativeThemePages,
   GenerativeThemePresets,
   KobayashiImages,
   MuiThemePresets,
@@ -19,9 +17,6 @@ export type ThemeColorScheme = (typeof ColorSchemes)[number];
 export type ThemeVariant = (typeof ThemeVariants)[number];
 export type StaticThemePreset = (typeof StaticThemePresets)[number];
 export type MuiThemePreset = (typeof MuiThemePresets)[number];
-
-export type GenerativeThemeMode = (typeof GenerativeThemeModes)[number];
-export type GenerativeThemePage = (typeof GenerativeThemePages)[number];
 export type GenerativeThemePreset = (typeof GenerativeThemePresets)[number];
 export type KobayashiImage = (typeof KobayashiImages)[number];
 export type ColorShadesPreset = (typeof ColorShadesPresets)[number];
