@@ -3,9 +3,9 @@ import {
   presetSamplesWithKeyAndName,
 } from '../index';
 import staticPalette from '../presets/staticPalette';
-import type { ThemePalette } from '../types';
+import type { GeneratorOptions } from '../types';
 
-export const getStaticPalette = (theme: ThemePalette) =>
+export const getStaticPalette = (theme: GeneratorOptions) =>
   presetSampleWithKeyAndNameHash([
     ...presetSamplesWithKeyAndName(
       staticPalette(theme).nodes,

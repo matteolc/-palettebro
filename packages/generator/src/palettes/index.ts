@@ -1,5 +1,5 @@
 import { parseColor } from '../color/parse-color';
-import type { Palette, Theme, ThemePalette, ThemeVariant } from '../types';
+import type { Palette, Theme, GeneratorOptions, ThemeVariant } from '../types';
 import {
   ThemeColorSchemeEnum,
   ThemeSchema,
@@ -10,8 +10,8 @@ import { getDynamicPalette } from './dynamic';
 import { getStaticPalette } from './static';
 import { getMuiPalette } from './material';
 
-const getVariant = (variant: ThemeVariant | string) => {
-  if (ThemeVariants.includes(variant as ThemeVariant)) {
+const getVariant = (variant: Theme['variant']) => {
+  if (variant && ThemeVariants.includes(variant)) {
     return {
       [ThemeVariantEnum.mui]: getMuiPalette,
       [ThemeVariantEnum.static]: getStaticPalette,
@@ -44,7 +44,7 @@ export const getPalette = (props: { theme: Theme }): Palette | undefined => {
       : undefined,
     isDark: colorScheme === ThemeColorSchemeEnum.dark,
     ...rest,
-  } satisfies ThemePalette);
+  } satisfies GeneratorOptions);
 };
 
 export { default as staticPalette } from '../presets/staticPalette';

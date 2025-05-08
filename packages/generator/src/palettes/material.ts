@@ -18,7 +18,7 @@ import type {
   Palette,
   MuiThemePreset,
   PalettebroColor,
-  ThemePalette,
+  GeneratorOptions,
 } from '../types';
 import { formatPalettebroToHex, nearestColorName } from '../color';
 import {
@@ -104,7 +104,7 @@ const generateChartColors = (
       )
     : {};
 
-export const getMuiPalette = (theme: ThemePalette) => {
+export const getMuiPalette = (theme: GeneratorOptions) => {
   const argb = argbFromHex(formatPalettebroToHex(theme.primaryColor));
   const hct = Hct.fromInt(argb);
 

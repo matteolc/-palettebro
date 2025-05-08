@@ -10,7 +10,7 @@ import shadow from '../nodes/shadow';
 import saturation from '../nodes/saturation';
 import contrasting from '../nodes/contrasting';
 import lightness from '../nodes/lightness';
-import type { ThemePalette } from '../types';
+import type { GeneratorOptions } from '../types';
 import type { Preset } from './types';
 import primary from '../nodes/primary';
 import { randomUsableColor } from '../color';
@@ -417,7 +417,7 @@ const isValidStaticPreset = (
   return preset in presetNodeMapping;
 };
 
-export default (options?: ThemePalette) => {
+export default (options?: GeneratorOptions) => {
   const getNodeDef = (nodeDef: NodeDef, token: string) => {
     const baseNodeDef = {
       ...defs[nodeDef.type],

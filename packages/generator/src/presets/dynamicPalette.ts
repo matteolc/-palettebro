@@ -4,10 +4,10 @@ import type { Preset } from './types';
 import shades from '../nodes/shades';
 import primary from '../nodes/primary';
 import { randomUsableColor } from '../color';
-import type { ThemePalette } from '../types';
+import type { GeneratorOptions } from '../types';
 
 export default (
-  options?: ThemePalette & { token: 'primary' | 'secondary' | 'accent' },
+  options?: GeneratorOptions & { token: 'primary' | 'secondary' | 'accent' },
 ) => {
   return {
     label: 'Dynamic palette',

@@ -60,7 +60,7 @@ console.log(palette);
 
 ### Types
 
-- `Theme`, `ThemePalette`, `Palette`, `PalettebroColor`, etc.
+- `Theme`, `GeneratorOptions`, `Palette`, `PalettebroColor`, etc.
 
 ## Presets
 

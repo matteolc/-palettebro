@@ -5,8 +5,6 @@ import type {
   ColorSchemes,
   ColorShadesPresets,
   FrameworkCompatibilities,
-  GenerativeThemePresets,
-  KobayashiImages,
   MuiThemePresets,
   StaticThemePresets,
   ThemeSchema,
@@ -17,30 +15,26 @@ export type ThemeColorScheme = (typeof ColorSchemes)[number];
 export type ThemeVariant = (typeof ThemeVariants)[number];
 export type StaticThemePreset = (typeof StaticThemePresets)[number];
 export type MuiThemePreset = (typeof MuiThemePresets)[number];
-export type GenerativeThemePreset = (typeof GenerativeThemePresets)[number];
-export type KobayashiImage = (typeof KobayashiImages)[number];
 export type ColorShadesPreset = (typeof ColorShadesPresets)[number];
 export type ColorFormat = (typeof ColorFormats)[number];
 export type FrameworkCompatibility = (typeof FrameworkCompatibilities)[number];
 
 export type Theme = z.input<typeof ThemeSchema>;
 
-export type ThemePalette = {
+export type GeneratorOptions = {
   primaryColor: PalettebroColor;
   secondaryColor?: PalettebroColor;
   accentColor?: PalettebroColor;
   isDark: boolean;
-  format?: ColorFormat;
 } & Pick<
   Theme,
+    'format'
   | 'preset'
   | 'contrast'
   | 'reverse'
   | 'reverseLightDarkShades'
   | 'colorShadesPreset'
 >;
-
-export type Themes = Record<ThemeColorScheme, Theme>;
 
 export type Palette = Record<string, { color: string; name: string }>;
 
