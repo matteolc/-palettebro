@@ -1,11 +1,7 @@
 import nearestColor from 'nearest-color';
 import colornames from '../data/colornames.bestof.json';
 
-const find = nearestColor.from(
-  Object.fromEntries(
-    Object.entries(colornames).map(([name, hex]) => [name, hex]),
-  ),
-);
+const find = nearestColor.from(colornames);
 
 export const nearestColorName = (hex: string) => {
   try {

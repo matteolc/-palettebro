@@ -1,6 +1,7 @@
 import { getPalette, type Theme } from '@palettebro/generator';
 
 const theme: Theme = {
+  colorShadesPreset: 'bootstrap',
   baseColors: {
     primary: '#007bff',
   },

@@ -1,6 +1,6 @@
 # @palettebro/tailwind
 
-A Tailwind 4 plugin for creating color palettes.
+A Tailwind 4 plugin for adding `@palettebro/generator` colors to Tailwind color utilities.
 
 ## Installation
 
@@ -23,6 +23,18 @@ Add the plugin to your `css`:
   reverseLightDarkShades: true;
   primary: #412f9c;
 }
+```
+
+Use classes as:
+
+```jsx
+<MyComponent className="bg-surface-container text-on-surface">
+```
+
+Or CSS variables as:
+
+```jsx
+<MyComponent className="bg-(--color-surface-container) text-(--color--on-surface)">
 ```
 
 ## License

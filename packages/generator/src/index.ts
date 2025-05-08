@@ -36,37 +36,6 @@ export const sample = (def: NodeDef, color: PalettebroColor, ratio?: number) =>
 export const samples = (def: NodeDef, color: PalettebroColor, count: number) =>
   range(count).map((i) => sample(def, color, i / (count - 1)));
 
-export const paramSample = (
-  def: NodeDef,
-  args: Args,
-  paramName: Param['name'],
-  color: PalettebroColor,
-  ratio: number,
-) =>
-  def.apply(
-    color,
-    Object.fromEntries(
-      def.params.map((param) => [
-        param.name,
-        param.name === paramName && param.type === 'range'
-          ? interval(param.min, param.max, ratio)
-          : param.name in args
-            ? args[param.name]
-            : param.default,
-      ]),
-    ),
-  );
-
-export const paramSamples = (
-  def: NodeDef,
-  args: Args,
-  paramName: Param['name'],
-  color: PalettebroColor,
-  count: number,
-) =>
-  range(count).map((_, i) =>
-    paramSample(def, args, paramName, color, i / (count - 1)),
-  );
 
 export const presetSample = (
   def: NodeDef,
@@ -82,23 +51,6 @@ export const presetSample = (
       ]),
     ),
   );
-
-export const presetSamples = (nodes: PresetNode[], color: PalettebroColor) =>
-  nodes.flatMap(({ type, args, children, isHidden }) => {
-    const def = defs[type];
-    const sample = presetSample(def, color, args);
-    const samples: PalettebroColor[] = [];
-
-    if (!isHidden) {
-      samples.push(sample);
-    }
-
-    if (children) {
-      samples.push(...presetSamples(children, sample));
-    }
-
-    return samples;
-  });
 
 export const presetSamplesWithKeyAndName = (
   nodes: PresetNode[],

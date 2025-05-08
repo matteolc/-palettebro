@@ -94,6 +94,5 @@ export const ThemeSchema = z.object({
     primary: z.string(),
     secondary: z.string().optional(),
     accent: z.string().optional(),
-    neutral: z.string().optional(),
   }),
 });
