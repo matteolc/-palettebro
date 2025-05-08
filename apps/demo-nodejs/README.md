@@ -7,25 +7,19 @@ A simple Node.js demo app using [`@palettebro/generator`](https://www.npmjs.com/
 ### Install dependencies
 
 ```bash
-npm install
+pnpm install
 ```
 
-### Run the demo in development mode
+### Build
 
 ```bash
-npm run dev
+pnpm build
 ```
 
-### Build for production
+### Run
 
 ```bash
-npm run build
-```
-
-### Run the built app
-
-```bash
-npm start
+pnpm start
 ```
 
 ## How it works
@@ -35,7 +29,3 @@ The entry point is [`src/index.ts`](src/index.ts):
 - Imports `getPalette` and `Theme` from `@palettebro/generator`.
 - Defines a simple theme with a primary color.
 - Generates a palette and prints it to the console.
-
----
-
-This project uses [Vite](https://vitejs.dev/) for building and [TypeScript](https://www.typescriptlang.org/) for type safety.
