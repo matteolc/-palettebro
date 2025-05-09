@@ -1,9 +1,17 @@
+import { createEnum } from "../../utils";
+
+export const Wcag2Levels = ['AAA', 'AA', 'AA18', 'KO'] as const;
+export const Wcag2LevelEnum = createEnum(Wcag2Levels);
+
 export enum Wcag2Level {
   aaa = 7,
   aa = 4.5,
   aa18 = 3,
   ko = 0,
 }
+
+export const Wcag3Levels = ['5', '4', '3', '2', '1', '0'] as const;
+export const Wcag3LevelEnum = createEnum(Wcag3Levels);
 
 export enum Wcag3Level {
   all = 75,

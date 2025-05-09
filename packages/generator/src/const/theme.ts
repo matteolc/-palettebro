@@ -54,12 +54,7 @@ export const ColorFormats = [
 ] as const;
 export const ColorFormatEnum = createEnum(ColorFormats);
 
-export const FrameworkCompatibilities = [
-  'mui',
-  'shadcn',
-  'bootstrap',
-  'daisyui',
-] as const;
+export const FrameworkCompatibilities = ['shadcn', 'daisyui'] as const;
 export const FrameworkCompatibilityEnum = createEnum(FrameworkCompatibilities);
 
 export const ThemeSchema = z.object({
@@ -68,15 +63,9 @@ export const ThemeSchema = z.object({
     .enum(ColorSchemes)
     .optional()
     .default(ThemeColorSchemeEnum.light),
-  variant: z
-    .enum(ThemeVariants)
-    .optional()
-    .default(ThemeVariantEnum.static),
+  variant: z.enum(ThemeVariants).optional().default(ThemeVariantEnum.static),
   preset: z
-    .enum([
-      ...StaticThemePresets,
-      ...MuiThemePresets,
-    ])
+    .enum([...StaticThemePresets, ...MuiThemePresets])
     .optional()
     .default(StaticThemePresetEnum['hue-shift']),
   reverse: z.boolean().optional().default(false),

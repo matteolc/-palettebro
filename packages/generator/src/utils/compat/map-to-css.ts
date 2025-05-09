@@ -35,7 +35,5 @@ export const mapFramework = (
   return {
     [FrameworkCompatibilityEnum.shadcn]: mapShadcnTheme,
     [FrameworkCompatibilityEnum.daisyui]: mapDaisyuiTheme,
-    [FrameworkCompatibilityEnum.bootstrap]: mapShadcnTheme,
-    [FrameworkCompatibilityEnum.mui]: mapShadcnTheme,
   }[frameworkCompatibilty ?? FrameworkCompatibilityEnum.shadcn];
 };

@@ -15,6 +15,7 @@ export type ThemeColorScheme = (typeof ColorSchemes)[number];
 export type ThemeVariant = (typeof ThemeVariants)[number];
 export type StaticThemePreset = (typeof StaticThemePresets)[number];
 export type MuiThemePreset = (typeof MuiThemePresets)[number];
+export type ThemePreset = StaticThemePreset | MuiThemePreset;
 export type ColorShadesPreset = (typeof ColorShadesPresets)[number];
 export type ColorFormat = (typeof ColorFormats)[number];
 export type FrameworkCompatibility = (typeof FrameworkCompatibilities)[number];

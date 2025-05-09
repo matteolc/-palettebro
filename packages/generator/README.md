@@ -1,6 +1,6 @@
 # @palettebro/generator
 
-Simple yet powerful color palette generator for your web application based on [Culori](https://culorijs.org/). The generator manipulates colors in the `HSL`/`OKLCH` color spaces to aid in:
+Simple yet powerful color palette generator for your web application based on [Culori](https://culorijs.org/). The generator manipulates colors in the `OKHSL`/`OKLCH` color spaces to aid in:
 
 - Easily use advanced color manipulation functions to create the palette you desire
 - Automatically generate `light` and `dark` themes
@@ -10,11 +10,11 @@ Simple yet powerful color palette generator for your web application based on [C
 
 ## Purpose
 
-This library automates the generation of a comprehensive color palette given a minimum of one to a maxium of three colors (`primary`, `secondary`, `accent` -a `primary` color is always required). The library generates shades, tones and surface colors most common in modern web design.
+This library automates the generation of a comprehensive color palette given a minimum of one to a maxium of three colors (`primary`, `secondary`, `accent` -a `primary` color is always required). The library generates shades, tones and surface colors most common in modern web design by using color manipulation functions in the `OKHSL`/`OKLCH` color spaces (*)
 
 `primary`, `secondary` and `accent` colors get:
 
-- A set of shades with a range compatible with different frameworks (*)
+- A set of shades with a range compatible with different frameworks (**)
 - Container and foreground tints (`on-primary`, `primary-container`, `on-primary-container`)
 
 Additionally:
@@ -22,7 +22,10 @@ Additionally:
 - The `primary` color gets a rainbow scale to use in charts
 - Various surface and outline colors are generated following [Material UI 3](https://m3.material.io/styles/color/roles) color roles guidelines
 
-(*) Currently supported Tailwind, Material UI and Bootstap
+
+(*) Hues are rotated in `OKLCH`, which has more uniform hues than other color spaces. However, instead of using `OKLCH`'s chroma and lightness, it uses saturation and lightness from `OKHSL`, as it is a more human-friendly way of interacting with color. See [Schemist](https://github.com/felixgirault/schemist)
+
+(**) Currently supported Tailwind, Material UI and Bootstap
 
 ### Palette
 ![Palette](../../docs/palette.png)
@@ -33,7 +36,7 @@ Additionally:
 ### Tailwind Shades
 ![Shades](../../docs/shades-tw.png)
 
-## How To Use
+## Modes Of Operation
 
 `@palettebro/generator` works in three different modes or `variants`. Each `variant` has different `presets` that control how `primary`, `secondary` and `accent` colors relate to each other:
 
@@ -42,6 +45,182 @@ Additionally:
 - `dynamic`. This variant accepts up to three colors: `primary`, `secondary` and `accent`. You can generate these colors as you wish, or just input one or two colors if you want a two-colors scheme (like `primary` and `accent`). Use this `variant` to have full control over the generated palette (however you will loose the ability generate harmonious two or three color combinations, as you will have to provide these yourself).
 
 For the full list of `options` refer to [types.ts](src/types/index.ts)
+
+## Theme Presets
+
+### Static Theme Presets
+
+| Preset               | Description |
+|----------------------|-------------|
+| split-complementary  | Uses split-complementary colors for secondary and accent, creating vibrant contrast. |
+| tetrad               | Uses a four-color (tetrad) harmony for secondary and accent, for rich, balanced palettes. |
+| triad                | Uses a three-color (triad) harmony for secondary and accent, for dynamic, balanced palettes. |
+| hue-shift            | Shifts the hue for secondary (+30°) and accent (+60°), creating harmonious variation. |
+| depth                | Adds highlight and shadow shifts for depth and dimensionality. |
+| duotone              | Reduces saturation for secondary, highlights for accent, for a soft, two-tone look. |
+| neo-brutalist        | Boosts saturation and contrast for bold, high-impact palettes. |
+| glassmorphism        | Desaturates secondary, adds highlights/shadows for accent, for a frosted-glass effect. |
+| cyberpunk            | Shifts secondary hue (+180°), high contrast for accent, for a neon, futuristic look. |
+| vaporwave            | Shifts secondary hue (+195°), pastel highlights for accent, for a dreamy, retro look. |
+| retro-futurism       | Boosts secondary saturation, shifts accent hue (+210°), for a playful, nostalgic palette. |
+| nordic-minimalism    | Desaturates secondary, cool blue accent, for a clean, minimal look. |
+| sunset-gradient      | Warm orange secondary (+35°), magenta accent (+320°), for a sunset-inspired palette. |
+| electric-neon        | Maxes out secondary saturation, high contrast or purple/green accent, for neon vibrancy. |
+| earth-tones          | Muted secondary, terracotta accent (+50°), for natural, earthy palettes. |
+| pastel-dreams        | Light, pastel secondary, lavender accent (+280°), for soft, dreamy palettes. |
+| monochrome-depth     | Adjusts lightness and desaturates for monochrome palettes with depth. |
+
+### MUI Theme Presets
+
+| Preset         | Description |
+|----------------|-------------|
+| content        | Matches the source color closely, with primary container as the seed color and a complementary tertiary. |
+| expressive     | Medium chroma, primary hue is intentionally shifted for variety and expressiveness. |
+| fidelity       | Maximizes fidelity to the seed color, adjusting tones for accessibility. |
+| fruit-salad    | Playful, the source color's hue does not appear in the theme. |
+| monochrome     | All colors are grayscale, no chroma. |
+| neutral        | Nearly grayscale, with a hint of chroma. |
+| rainbow        | Playful, the source color's hue does not appear in the theme. |
+| tonal-spot     | Pastel, low chroma palettes; the default Material You theme. |
+| vibrant        | Maximizes colorfulness (chroma) in the primary palette. |
+
+
+## Palette
+
+The `getPalette` function returns an object with the core palette colors:
+
+```ts
+const palette = getPalette({
+  baseColors: {
+    primary: '#007bff',
+  },
+})
+
+// palette
+{
+  primary: { name: 'Azure', color: 'oklch(60.48144% 0.216559 257.213551)' },
+  secondary: {
+    name: 'Lawn green',
+    color: 'oklch(60.492921% 0.184386 137.302298)'
+  },
+  'on-secondary': { name: 'White', color: 'oklch(99.999999% 0 0)' },
+  'secondary-container': { name: 'Lima', color: 'oklch(91.408137% 0.188345 137.203108)' },
+  'on-secondary-container': {
+    name: 'Lincoln green',
+    color: 'oklch(39.196261% 0.119129 137.152482)'
+  },
+  ...
+}
+```
+
+You can output the color in any of the following formats: `rgb`, `hex`, `hsl`, `lch`, `oklch` and `pantone`
+
+```ts
+const palette = getPalette({
+  baseColors: {
+    primary: '#007bff',
+  },
+  format: ColorFormatEnum.pantone
+})
+
+// palette
+{
+  primary: { name: 'Azure', color: '2726C' },
+  secondary: { name: 'Lawn green', color: '348C' },
+  'on-secondary': { name: 'White', color: '663C' },
+  'secondary-container': { name: 'Lima', color: '367C' },
+  'on-secondary-container': { name: 'Lincoln green', color: '349C' },
+  ...
+}
+```
+
+### Options
+
+The `getPalette` function expects an object with a `theme` property, which should be an object with the following options:
+
+| Option                  | Type      | Description                                                                                      | Default                |
+|-------------------------|-----------|--------------------------------------------------------------------------------------------------|------------------------|
+| `baseColors.primary`    | `string`  | The primary color (hex, rgb, hsl, lch, oklch, or pantone). **Required**.                         | —                      |
+| `baseColors.secondary`  | `string`  | The secondary color. Optional. If omitted, it is generated from the primary color (except in `dynamic` variant). | —                      |
+| `baseColors.accent`     | `string`  | The accent color. Optional. If omitted, it is generated from the primary color (except in `dynamic` variant).   | —                      |
+| `format`                | `string`  | Output color format: `rgb`, `hex`, `hsl`, `lch`, `oklch`, or `pantone`.                          | `oklch`                  |
+| `color-scheme`          | `string`  | Color scheme: `light` or `dark`. Note: a `dark` theme will be automatically generated from a `light` theme and viceversa.                                                                 | `light`                |
+| `variant`               | `string`  | Palette generation mode: `static`, `mui`, or `dynamic`.                                          | `static`               |
+| `preset`                | `string`  | Preset to use (see tables above for available presets for each variant).                          | `hue-shift` (static)   |
+| `reverse`               | `boolean` | Swap the `secondary` and `accent` colors.                                | `false`                |
+| `contrast`              | `number`  | Adjusts contrast (currently only available in the `mui` variant).                                                       | `0`                    |
+| `reverseLightDarkShades`| `boolean` | Reverse the order of light/dark shades in generated palette.                                      | `true`                 |
+| `colorShadesPreset`     | `string`  | Which shade system to use: `tailwind`, `mui`, or `bootstrap`.                                    | `tailwind`             |
+| `frameworkCompatibilty` | `string`  | Framework compatibility: `shadcn` or `daisyui`.                                                  | `shadcn`               |
+
+#### Notes
+
+- **Required:** At minimum, you must provide `baseColors.primary`.
+- **Secondary/Accent:** If you want full control (e.g., in `dynamic` variant), you can provide `baseColors.secondary` and/or `baseColors.accent`.
+- **Preset:** The available values for `preset` depend on the selected `variant` (see the tables above for static and MUI presets).
+- **format:** Controls the output color format for all palette entries.
+
+#### Example
+
+```js
+const palette = getPalette({
+  theme: {
+    baseColors: {
+      primary: '#007bff',
+      secondary: '#ffb300', // optional
+      accent: '#e91e63',    // optional
+    },
+    format: 'oklch',
+    'color-scheme': 'dark',
+    variant: 'static',
+    preset: 'triad',
+    reverse: false,
+    contrast: 0,
+    reverseLightDarkShades: true,
+    colorShadesPreset: 'tailwind',
+    frameworkCompatibilty: 'shadcn',
+  }
+});
+```
+
+## CSS Variables
+
+The `paletteToCssVars` transforms the core palette colors into CSS variables that can be injected in the DOM or used in your CSS. The function returns an object like:
+
+```ts
+const cssVars = paletteToCssVars(palette)
+
+// cssVars
+{
+  '--color-primary': 'oklch(60.48144% 0.216559 257.213551)',
+  '--color-secondary': 'oklch(60.492921% 0.184386 137.302298)',
+  '--color-on-secondary': 'oklch(99.999999% 0 0)',
+  '--color-secondary-container': 'oklch(91.408137% 0.188345 137.203108)',
+  '--color-on-secondary-container': 'oklch(39.196261% 0.119129 137.152482)',
+  ...
+}
+```
+
+You can choose a framework compatibility option to add to the core CSS variables color tokens compatible with a specific framework. Current supported frameworks are:
+
+- [shadcn/ui](https://ui.shadcn.com/)
+- [daisyui](https://daisyui.com/)
+
+```ts
+const cssVars = paletteToCssVars(palette, FrameworkCompatibilityEnum.daisyui)
+
+// cssVars
+{
+  ...
+  '--color-base-100': 'oklch(98.350639% 0.00791 253.851847)',
+  '--color-base-200': 'oklch(98.306083% 0.008026 278.639769)',
+  '--color-base-300': 'oklch(96.656192% 0.015669 266.279586)',
+  '--color-base-content': 'oklch(17.860627% 0.062743 256.740222)',
+  '--color-primary-content': 'oklch(99.999999% 0 0)',
+  '--color-secondary-content': 'oklch(99.999999% 0 0)',
+  ...
+}
+```
 
 ## Installation
 
@@ -54,25 +233,6 @@ yarn add @palettebro/generator
 ## Usage
 
 See [Demo](../../apps/demo-nodejs/README.md)
-
-### Example: Custom Theme
-
-```ts
-import { getPalette, Theme } from '@palettebro/generator';
-
-const theme: Theme = {
-  'color-scheme': 'dark',
-  variant: 'mui',
-  preset: 'vibrant',
-  baseColors: {
-    primary: '#ff5722',
-  },
-  format: 'hsl',
-};
-
-const palette = getPalette({ theme });
-console.log(palette);
-```
 
 ## Libraries Used
 

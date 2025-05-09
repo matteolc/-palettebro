@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@plugin 'tailwindcss-animate';
+
 @plugin '@palettebro/tailwind' {
   reverseLightDarkShades: true;
   primary: #412f9c;
@@ -7,6 +9,7 @@
 
 :root {
   --radius: 0.5rem;
+  --spacing: 0.25rem;
 }
 
 @theme inline {
@@ -24,7 +27,7 @@
 html,
 body {
   @apply bg-background;
-  @apply min-h-screen;
+  @apply min-h-screen transition-colors duration-300;
 }
 
 @layer utilities {
@@ -33,5 +36,17 @@ body {
     @apply from-primary to-accent via-secondary;
     animation: gradient 4s ease infinite;
     background-size: 200% 200%;
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 }

@@ -46,5 +46,3 @@ export const getPalette = (props: { theme: Theme }): Palette | undefined => {
     ...rest,
   } satisfies GeneratorOptions);
 };
-
-export { default as staticPalette } from '../presets/staticPalette';

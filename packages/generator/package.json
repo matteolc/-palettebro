@@ -25,6 +25,7 @@
     "delta-e": "^0.0.8",
     "nearest-color": "^0.4.4",
     "simple-color-converter": "^2.1.13",
+    "tinycolor2": "^1.6.0",
     "zod": "^3.24.3"
   },
   "devDependencies": {
