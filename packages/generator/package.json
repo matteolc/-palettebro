@@ -11,6 +11,12 @@
     },
     "./types": "./dist/index.d.ts"
   },
+  "keywords": [
+    "palette",
+    "color",
+    "css",
+    "design"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -25,7 +31,6 @@
     "delta-e": "^0.0.8",
     "nearest-color": "^0.4.4",
     "simple-color-converter": "^2.1.13",
-    "tinycolor2": "^1.6.0",
     "zod": "^3.24.3"
   },
   "devDependencies": {
@@ -47,5 +52,10 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matteolc/-palettebro"
+  },
+  "homepage": "https://www.palettebro.com"
 }

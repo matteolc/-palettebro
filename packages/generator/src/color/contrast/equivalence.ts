@@ -7,6 +7,12 @@ import {
   wcag3To2Equivalences,
 } from './const';
 
+/**
+ * Convert a WCAG level between WCAG2 and WCAG3
+ * @param type - The type of contrast
+ * @param level - The level to convert
+ * @returns The converted level
+ */
 export const equivalence = (type: ContrastType, level: number) => {
   switch (type) {
     case 'wcag2':

@@ -1,5 +1,5 @@
-import { Wcag3Level, Wcag3LevelEnum } from './const';
-import type { Wcag3Grade } from './types';
+import { Wcag3Level, Wcag3LevelEnum } from '../const';
+import type { Wcag3Grade } from '../types';
 
 export const wcag3Grade = (level: number): Wcag3Grade => {
   if (level >= Wcag3Level.all) return Wcag3LevelEnum[5];

@@ -19,7 +19,15 @@ export function ThemeToggle() {
     }
   };
 
-  const ThemeToggleButton = ({ theme, label, icon }: { theme: 'light' | 'dark' | 'system', label: string, icon: React.ReactNode }) => {
+  const ThemeToggleButton = ({
+    theme,
+    label,
+    icon,
+  }: {
+    theme: 'light' | 'dark' | 'system';
+    label: string;
+    icon: React.ReactNode;
+  }) => {
     return (
       <button
         type="button"
@@ -31,25 +39,26 @@ export function ThemeToggle() {
       </button>
     );
   };
-  
 
   return (
-    <div className="flex items-center gap-0">
-      <ThemeToggleButton
-        theme="system"
-        label="Use system theme"
-        icon={<Monitor className="h-5 w-5" />}
-      />
-      <ThemeToggleButton
-        theme="light"
-        label="Use light theme"
-        icon={<Sun className="h-5 w-5" />}
-      />
-      <ThemeToggleButton
-        theme="dark"
-        label="Use dark theme"
-        icon={<Moon className="h-5 w-5" />}
-      />
+    <div className="fixed bottom-2 left-1/2 -translate-x-1/2 rounded-lg bg-background p-0.5 border border-border">
+      <div className="flex items-center gap-0">
+        <ThemeToggleButton
+          theme="system"
+          label="Use system theme"
+          icon={<Monitor className="h-5 w-5" />}
+        />
+        <ThemeToggleButton
+          theme="light"
+          label="Use light theme"
+          icon={<Sun className="h-5 w-5" />}
+        />
+        <ThemeToggleButton
+          theme="dark"
+          label="Use dark theme"
+          icon={<Moon className="h-5 w-5" />}
+        />
+      </div>
     </div>
   );
 }

@@ -17,6 +17,10 @@ import {
   ChartPalette,
   ShadePalette,
   PaletteSectionTitle,
+  CorePaletteContrast,
+  ColorPaletteLegend,
+  ShadePaletteContrast,
+  ChartPaletteContrast,
 } from './components/palette';
 import { ShadcnUtilities } from './components/utilities/shadcn';
 import {
@@ -71,14 +75,23 @@ export function meta() {
 export function Layout({ children }: { children: React.ReactNode }) {
   useTheme();
 
-  const [shades, setShades] = useState<ColorGroup[]>(TW_COLOR_GROUPS);
+  const [styles, setStyles] = useState<CSSStyleDeclaration | null>(null);
+  const [shades, setShades] = useState<ColorGroup[] | null>(null);
   const [utils, setUtils] = useState<Record<string, boolean>>({ shadcn: true });
 
   useEffect(() => {
     const root = document.documentElement;
     const styles = getComputedStyle(root);
+    setStyles(styles);
+  }, []);
+
+  useEffect(() => {
+    if (!styles) {
+      return;
+    }
 
     if (styles.getPropertyValue('--color-primary-950')) {
+      setShades(TW_COLOR_GROUPS);
       return;
     }
 
@@ -88,17 +101,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
     }
 
     setShades(BOOTSTRAP_COLOR_GROUPS);
-  }, []);
+  }, [styles]);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: No loops
   useEffect(() => {
-    const root = document.documentElement;
-    const styles = getComputedStyle(root);
+    if (!styles) {
+      return;
+    }
+
     if (styles.getPropertyValue('--color-sidebar')) {
       return;
     }
     setUtils({ ...utils, shadcn: false });
-  }, []);
+  }, [styles]);
 
   return (
     <html lang="en" title="Palettebro">
@@ -109,14 +124,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <main className="flex flex-col items-start justify-start space-y-8 pt-16 pb-12 max-w-7xl mx-auto">
+        <main className="flex flex-col items-start justify-start space-y-8 pt-16 pb-12 max-w-7xl mx-auto px-8">
           <div className="flex-1 flex flex-col items-center gap-16 min-h-0">
             <header className="flex flex-col items-center gap-9">
-              <h1
-                className={
-                  'scroll-m-20 font-medium tracking-tighter text-balance text-7xl text-muted-foreground'
-                }
-              >
+              <h1 className="scroll-m-20 font-medium tracking-tighter text-balance text-7xl text-muted-foreground">
                 Create beautiful color palettes with{' '}
                 <span className="title-gradient text-transparent bg-clip-text font-bold pr-2">
                   <Link to="/">Palettebro</Link>
@@ -133,9 +144,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <ShadePalette shades={shades} />
           <PaletteSectionTitle>Chart</PaletteSectionTitle>
           <ChartPalette />
-          <div className="fixed bottom-2 left-1/2 -translate-x-1/2 rounded-lg bg-background p-0.5 border border-border">
-            <ThemeToggle />
-          </div>
+          <PaletteSectionTitle>Contrast Grid</PaletteSectionTitle>
+          <CorePaletteContrast styles={styles} />
+          <ShadePaletteContrast shades={shades} styles={styles} />
+          <ChartPaletteContrast styles={styles} />
+          <ColorPaletteLegend />
+          <ThemeToggle />
         </main>
         <ScrollRestoration />
         <Scripts />

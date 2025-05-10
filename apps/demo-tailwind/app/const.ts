@@ -269,7 +269,7 @@ export const TW_COLOR_GROUPS = [
         name: '50',
         bgColor: '--color-primary-50',
         textColor: '--color-primary-950',
-        borderRadius: 'rounded-l-md',
+        borderRadius: 'rounded-t-md lg:rounded-l-md lg:rounded-r-none',
       },
       {
         name: '100',
@@ -320,7 +320,7 @@ export const TW_COLOR_GROUPS = [
         name: '950',
         bgColor: '--color-primary-950',
         textColor: '--color-primary-50',
-        borderRadius: 'rounded-r-md',
+        borderRadius: 'rounded-b-md lg:rounded-r-md lg:rounded-l-none',
       },
     ],
   },
@@ -331,7 +331,7 @@ export const TW_COLOR_GROUPS = [
         name: '50',
         bgColor: '--color-secondary-50',
         textColor: '--color-secondary-950',
-        borderRadius: 'rounded-l-md',
+        borderRadius: 'rounded-t-md lg:rounded-l-md lg:rounded-r-none',
       },
       {
         name: '100',
@@ -382,7 +382,7 @@ export const TW_COLOR_GROUPS = [
         name: '950',
         bgColor: '--color-secondary-950',
         textColor: '--color-secondary-50',
-        borderRadius: 'rounded-r-md',
+        borderRadius: 'rounded-b-md lg:rounded-r-md lg:rounded-l-none',
       },
     ],
   },
@@ -393,7 +393,7 @@ export const TW_COLOR_GROUPS = [
         name: '50',
         bgColor: '--color-accent-50',
         textColor: '--color-accent-950',
-        borderRadius: 'rounded-l-md',
+        borderRadius: 'rounded-t-md lg:rounded-l-md lg:rounded-r-none',
       },
       {
         name: '100',
@@ -444,7 +444,7 @@ export const TW_COLOR_GROUPS = [
         name: '950',
         bgColor: '--color-accent-950',
         textColor: '--color-accent-50',
-        borderRadius: 'rounded-r-md',
+        borderRadius: 'rounded-b-md lg:rounded-r-md lg:rounded-l-none',
       },
     ],
   },
@@ -914,7 +914,7 @@ export const CHART_PALETTE_COLORS = [
     name: '0',
     bgColor: '--color-primary-rainbow-0',
     textColor: '--color-on-primary',
-    borderRadius: 'rounded-l-md',
+    borderRadius: 'rounded-t-md lg:rounded-l-md lg:rounded-r-none',
   },
   {
     name: '1',
@@ -965,7 +965,7 @@ export const CHART_PALETTE_COLORS = [
     name: '10',
     bgColor: '--color-primary-rainbow-10',
     textColor: '--color-on-primary',
-    borderRadius: 'rounded-r-md',
+    borderRadius: 'rounded-b-md lg:rounded-r-md lg:rounded-l-none',
   },
 ];
 

@@ -1,8 +1,8 @@
 import { sRGBtoY } from 'apca-w3';
 
 import { APCAcontrast } from 'apca-w3';
-import { palettebroToRgb } from '../conversion';
-import { parseColor } from '../parse-color';
+import { palettebroToRgb } from '../../conversion';
+import { parseColor } from '../../parse-color';
 
 export const wcag3Contrast = (bg: string, fg: string) => {
   const [_, bgColor] = parseColor(bg);
