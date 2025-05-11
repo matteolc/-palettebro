@@ -4,8 +4,6 @@
 [![CI][ci-image]][ci-url]
 [![NPM version][npm-image]][npm-url]
 [![Downloads][downloads-image]][npm-url]
-[![JSR version][jsr-image]][jsr-url]
-[![Discord][discord-image]][discord-url]
 
 Simple yet powerful color palette generator for your web application based on [Culori](https://culorijs.org/). The generator manipulates colors in the `OKHSL`/`OKLCH` color spaces to aid in:
 
@@ -273,3 +271,11 @@ Color names are assigned by finding the closest match to a given color using the
 ## License
 
 MIT
+
+[license-image]: https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square
+[license-url]: https://opensource.org/licenses/MIT
+[ci-image]: https://img.shields.io/github/actions/workflow/status/matteolc/-palettebro/ci.yml?branch=main&logo=github&style=flat-square
+[ci-url]: https://github.com/matteolc/-palettebro/actions/workflows/ci.yml
+[npm-image]: https://img.shields.io/npm/v/@palettebro%2Fgenerator.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/@palettebro%2Fgenerator
+[downloads-image]: https://img.shields.io/npm/dm/@palettebro%2Fgenerator.svg?style=flat-square
