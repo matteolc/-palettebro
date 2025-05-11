@@ -11,7 +11,7 @@
   "dependencies": {
     "@palettebro/tailwind": "workspace:*",
     "@react-router/node": "^7.5.3",
-    "@react-router/serve": "^7.5.3",
+    "@react-router/serve": "^7.6.0",
     "tailwind-merge": "^3.2.0",
     "isbot": "^5.1.27",
     "lucide-react": "^0.503.0",
