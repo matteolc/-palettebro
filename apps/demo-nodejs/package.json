@@ -11,7 +11,7 @@
     "@palettebro/generator": "workspace:*"
   },
   "devDependencies": {
-    "vite": "^6.3.4",
+    "vite": "^6.3.5",
     "vite-tsconfig-paths": "^5.1.4",
     "typescript": "^5.8.3"
   }
