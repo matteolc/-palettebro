@@ -5,13 +5,16 @@
 [![NPM version][npm-image]][npm-url]
 [![Downloads][downloads-image]][npm-url]
 
-Simple yet powerful color palette generator for your web application based on [Culori](https://culorijs.org/). The generator manipulates colors in the `OKHSL`/`OKLCH` color spaces to aid in:
+Simple yet powerful color palette generator for your web application based on [Culori](https://culorijs.org/).
 
-- Easily use advanced color manipulation functions to create the palette you desire
+## Features
+
+- Easily use advanced color manipulation functions to create harmonious and accessible color palettes
 - Automatically generate `light` and `dark` themes
-- Use [MUI](https://m3.material.io/) palettes with Tailwind 4
+- Use [MUI](https://m3.material.io/) palettes with [Tailwind 4](https://tailwindcss.com/)
 - Reverse the scale of `light` and `dark` color shades to drastically reduce the use of `dark:` selectors
 - Output palette colors in multiple formats: `rgb`, `hex`, `hsl`, `lch` and `oklch`
+- Use the same palette and color tokens across different frontend frameworks
 
 ## Purpose
 
