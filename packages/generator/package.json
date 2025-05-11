@@ -20,6 +20,8 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
+    "test": "echo 'Not implemented'",
+    "test:coverage": "echo 'Not implemented'",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
     "format-and-lint": "biome check .",
     "format-and-lint:fix": "biome check . --write"

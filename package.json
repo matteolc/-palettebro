@@ -13,8 +13,8 @@
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "turbo run build && changeset publish",
-    "test": "vitest",
-    "test:coverage": "vitest --coverage"
+    "test": "turbo run test",
+    "test:coverage": "turbo run test:coverage"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",

@@ -6,6 +6,8 @@
     "build": "react-router build",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
+    "test": "echo 'Not implemented'",
+    "test:coverage": "echo 'Not implemented'",
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
