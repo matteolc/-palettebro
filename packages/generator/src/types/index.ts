@@ -1,4 +1,4 @@
-import type { z } from 'zod';
+import type * as v from 'valibot';
 import type { PalettebroColor } from '../color/types';
 import type {
   ColorFormats,
@@ -20,7 +20,7 @@ export type ColorShadesPreset = (typeof ColorShadesPresets)[number];
 export type ColorFormat = (typeof ColorFormats)[number];
 export type FrameworkCompatibility = (typeof FrameworkCompatibilities)[number];
 
-export type Theme = z.input<typeof ThemeSchema>;
+export type Theme = v.InferInput<typeof ThemeSchema>;
 
 export type GeneratorOptions = {
   primaryColor: PalettebroColor;

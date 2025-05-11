@@ -7,7 +7,6 @@ import { ColorFormatEnum } from './theme';
 import { formatHsl } from '../color/formatting/hsl';
 import { formatLch } from '../color/formatting/lch';
 import { colorToRawOklchString } from '../color/formatting/oklch';
-import convert from 'simple-color-converter';
 
 export const formatters = {
   [ColorFormatEnum.rgb]: (color: PalettebroColor) =>
@@ -20,9 +19,4 @@ export const formatters = {
     formatLch(palettebroToLch(color)),
   [ColorFormatEnum.oklch]: (color: PalettebroColor) =>
     `oklch(${colorToRawOklchString(formatRgbToHex(palettebroToRgb(color)))})`,
-  [ColorFormatEnum.pantone]: (color: PalettebroColor) =>
-    new convert({
-      color: formatRgbToHex(palettebroToRgb(color)),
-      to: ColorFormatEnum.pantone,
-    }).color,
 };

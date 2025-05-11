@@ -10,6 +10,7 @@ export default defineConfig((options) => ({
   minify: true,
   sourcemap: true,
   clean: true,
+  metafile: true,
   esbuildOptions(options) {
     options.tsconfig = 'tsconfig.build.json';
     options.mainFields = ['module', 'main'];

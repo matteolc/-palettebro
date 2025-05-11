@@ -1,3 +1,4 @@
+import * as v from 'valibot';
 import { parseColor } from '../color/parse-color';
 import type { Palette, Theme, GeneratorOptions, ThemeVariant } from '../types';
 import {
@@ -22,19 +23,20 @@ const getVariant = (variant: Theme['variant']) => {
 };
 
 export const getPalette = (props: { theme: Theme }): Palette | undefined => {
+  const parsed = v.safeParse(ThemeSchema, props.theme);
+  if (!parsed.success) return undefined;
+  
   const {
     baseColors,
     variant,
     'color-scheme': colorScheme,
     ...rest
   } = props.theme;
-  const parsed = ThemeSchema.safeParse(props.theme);
-  if (!parsed.success) return undefined;
 
   const [_, primaryColor] = parseColor(baseColors.primary);
   if (!primaryColor) return undefined;
 
-  return getVariant(parsed.data.variant)({
+  return getVariant(parsed.output.variant)({
     primaryColor,
     secondaryColor: baseColors?.secondary
       ? parseColor(baseColors.secondary)[1]

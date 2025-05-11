@@ -30,8 +30,7 @@
     "culori": "^4.0.1",
     "delta-e": "^0.0.8",
     "nearest-color": "^0.4.4",
-    "simple-color-converter": "^2.1.13",
-    "zod": "^3.24.3"
+    "valibot": "^1.1.0"
   },
   "devDependencies": {
     "@types/apca-w3": "^0.1.3",

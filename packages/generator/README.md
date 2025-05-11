@@ -1,12 +1,19 @@
 # @palettebro/generator
 
+[![License: MIT][license-image]][license-url]
+[![CI][ci-image]][ci-url]
+[![NPM version][npm-image]][npm-url]
+[![Downloads][downloads-image]][npm-url]
+[![JSR version][jsr-image]][jsr-url]
+[![Discord][discord-image]][discord-url]
+
 Simple yet powerful color palette generator for your web application based on [Culori](https://culorijs.org/). The generator manipulates colors in the `OKHSL`/`OKLCH` color spaces to aid in:
 
 - Easily use advanced color manipulation functions to create the palette you desire
 - Automatically generate `light` and `dark` themes
 - Use [MUI](https://m3.material.io/) palettes with Tailwind 4
 - Reverse the scale of `light` and `dark` color shades to drastically reduce the use of `dark:` selectors
-- Output palette colors in multiple formats including `pantone`: `rgb`, `hex`, `hsl`, `lch`, `oklch`
+- Output palette colors in multiple formats: `rgb`, `hex`, `hsl`, `lch` and `oklch`
 
 ## Purpose
 
@@ -113,23 +120,25 @@ const palette = getPalette({
 }
 ```
 
-You can output the color in any of the following formats: `rgb`, `hex`, `hsl`, `lch`, `oklch` and `pantone`
+You can output the color in any of the following formats: `rgb`, `hex`, `hsl`, `lch` and `oklch`
 
 ```ts
 const palette = getPalette({
   baseColors: {
     primary: '#007bff',
   },
-  format: ColorFormatEnum.pantone
+  format: ColorFormatEnum.hex
 })
 
 // palette
 {
-  primary: { name: 'Azure', color: '2726C' },
-  secondary: { name: 'Lawn green', color: '348C' },
-  'on-secondary': { name: 'White', color: '663C' },
-  'secondary-container': { name: 'Lima', color: '367C' },
-  'on-secondary-container': { name: 'Lincoln green', color: '349C' },
+  primary: { name: 'Galactic purple', color: '#412f9c' },
+  secondary: { name: 'Evergreen', color: '#19533c' },
+  'on-secondary': { name: 'White', color: '#ffffff' },
+  'secondary-container': { name: 'Neo mint', color: '#9bface' },
+  'on-secondary-container': { name: 'Zucchini', color: '#19513b' },
+  'secondary-50': { name: 'Mint coffee', color: '#d0fde7' },
+  'secondary-100': { name: 'Neo mint', color: '#9bface' },
   ...
 }
 ```
@@ -140,10 +149,10 @@ The `getPalette` function expects an object with a `theme` property, which shoul
 
 | Option                  | Type      | Description                                                                                      | Default                |
 |-------------------------|-----------|--------------------------------------------------------------------------------------------------|------------------------|
-| `baseColors.primary`    | `string`  | The primary color (hex, rgb, hsl, lch, oklch, or pantone). **Required**.                         | —                      |
+| `baseColors.primary`    | `string`  | The primary color (hex). **Required**.                         | —                      |
 | `baseColors.secondary`  | `string`  | The secondary color. Optional. If omitted, it is generated from the primary color (except in `dynamic` variant). | —                      |
 | `baseColors.accent`     | `string`  | The accent color. Optional. If omitted, it is generated from the primary color (except in `dynamic` variant).   | —                      |
-| `format`                | `string`  | Output color format: `rgb`, `hex`, `hsl`, `lch`, `oklch`, or `pantone`.                          | `oklch`                  |
+| `format`                | `string`  | Output color format: `rgb`, `hex`, `hsl`, `lch` or `oklch`.                          | `oklch`                  |
 | `color-scheme`          | `string`  | Color scheme: `light` or `dark`. Note: a `dark` theme will be automatically generated from a `light` theme and viceversa.                                                                 | `light`                |
 | `variant`               | `string`  | Palette generation mode: `static`, `mui`, or `dynamic`.                                          | `static`               |
 | `preset`                | `string`  | Preset to use (see tables above for available presets for each variant).                          | `hue-shift` (static)   |
@@ -222,6 +231,18 @@ const cssVars = paletteToCssVars(palette, FrameworkCompatibilityEnum.daisyui)
 }
 ```
 
+## Accessibility (Contrast)
+
+You can verify the accessibility of color pairs against `WCAG2` and `WCAG3` (APAC) guidelines thanks to the [apca-w3](https://www.npmjs.com/package/apca-w3) library.
+
+- To get the `WCAG2` or `WCAG3` contrast value of a color pair use `wcag2Contrast` or `wcag3Contrast`
+- To get the `WCAG2` or `WCAG3`grade of a color pair use `wcag2ContrastGrade` or `wcag3ContrastGrade`
+- To check the readability of a color pair, use `isWcag2Readable` or `isWcag3Readable`
+
+See [Demo](../../apps/demo-nodejs/src/index.ts) for example usage.
+
+![Contrast Grid](../../docs/contrast.png)
+
 ## Installation
 
 ```bash
@@ -241,13 +262,13 @@ See [Demo](../../apps/demo-nodejs/README.md)
 - [apca-w3](https://www.npmjs.com/package/apca-w3): Implements the APCA (Advanced Perceptual Contrast Algorithm) for accessible color contrast calculations.
 - [delta-e](https://www.npmjs.com/package/delta-e): Provides Delta E color difference formulas for measuring perceptual differences between colors.
 - [nearest-color](https://www.npmjs.com/package/nearest-color): Finds the closest named color to a given color value.
-- [simple-color-converter](https://www.npmjs.com/package/simple-color-converter): Converts between various color formats (RGB, HSL, LAB, etc.) with a simple API.
+- [valibot](https://github.com/fabian-hiller/valibot): Type-safe data validation
 
 ## Note About Color Names
 
 Color names are assigned by finding the closest match to a given color using the [nearest-color](https://www.npmjs.com/package/nearest-color) library. The matching is performed against [this](https://github.com/meodai/color-names) list of color names and their corresponding hex values, which aims to provide meaningful and recognizable names for a wide range of colors. If no close match is found, the original hex value is used as the name.
 
-🚨 The color names list adds `~130KB` to the base bundle size of `~6KB`
+🚨 The color names list adds `~105KB` to the base bundle size of `~32KB`
 
 ## License
 
