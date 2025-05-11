@@ -1,4 +1,11 @@
-import * as v from 'valibot';
+import {
+  object,
+  optional,
+  enum as enumType,
+  string,
+  boolean,
+  number,
+} from 'valibot';
 import { createEnum } from '../utils/create-enum';
 
 export const ColorSchemes = ['light', 'dark'] as const;
@@ -41,36 +48,45 @@ export const MuiThemePresets = [
 ] as const;
 export const MuiThemePresetEnum = createEnum(MuiThemePresets);
 
-export const ThemePresetEnum =createEnum( [...StaticThemePresets, ...MuiThemePresets])
+export const ThemePresetEnum = createEnum([
+  ...StaticThemePresets,
+  ...MuiThemePresets,
+]);
 
 export const ColorShadesPresets = ['tailwind', 'mui', 'bootstrap'] as const;
 export const ColorShadesPresetEnum = createEnum(ColorShadesPresets);
 
-export const ColorFormats = [
-  'rgb',
-  'hex',
-  'hsl',
-  'lch',
-  'oklch',
-] as const;
+export const ColorFormats = ['rgb', 'hex', 'hsl', 'lch', 'oklch'] as const;
 export const ColorFormatEnum = createEnum(ColorFormats);
 
 export const FrameworkCompatibilities = ['shadcn', 'daisyui'] as const;
 export const FrameworkCompatibilityEnum = createEnum(FrameworkCompatibilities);
 
-export const ThemeSchema = v.object({
-  format: v.optional(v.enum(ColorFormatEnum), ColorFormatEnum.hex),
-  'color-scheme': v.optional(v.enum(ThemeColorSchemeEnum), ThemeColorSchemeEnum.light),
-  variant: v.optional(v.enum(ThemeVariantEnum), ThemeVariantEnum.static),
-  preset: v.optional(v.enum(ThemePresetEnum), StaticThemePresetEnum['hue-shift']),
-  reverse: v.optional(v.boolean(), false),
-  contrast: v.optional(v.number(), 0),
-  reverseLightDarkShades: v.optional(v.boolean(), true),
-  colorShadesPreset: v.optional(v.enum(ColorShadesPresetEnum), ColorShadesPresetEnum.tailwind),
-  frameworkCompatibilty: v.optional(v.enum(FrameworkCompatibilityEnum), FrameworkCompatibilityEnum.shadcn),
-  baseColors: v.object({
-    primary: v.string(),
-    secondary: v.optional(v.string()),
-    accent: v.optional(v.string()),
+export const ThemeSchema = object({
+  format: optional(enumType(ColorFormatEnum), ColorFormatEnum.hex),
+  'color-scheme': optional(
+    enumType(ThemeColorSchemeEnum),
+    ThemeColorSchemeEnum.light,
+  ),
+  variant: optional(enumType(ThemeVariantEnum), ThemeVariantEnum.static),
+  preset: optional(
+    enumType(ThemePresetEnum),
+    StaticThemePresetEnum['hue-shift'],
+  ),
+  reverse: optional(boolean(), false),
+  contrast: optional(number(), 0),
+  reverseLightDarkShades: optional(boolean(), true),
+  colorShadesPreset: optional(
+    enumType(ColorShadesPresetEnum),
+    ColorShadesPresetEnum.tailwind,
+  ),
+  frameworkCompatibilty: optional(
+    enumType(FrameworkCompatibilityEnum),
+    FrameworkCompatibilityEnum.shadcn,
+  ),
+  baseColors: object({
+    primary: string(),
+    secondary: optional(string()),
+    accent: optional(string()),
   }),
 });
