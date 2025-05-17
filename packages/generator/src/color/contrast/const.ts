@@ -41,3 +41,22 @@ export const wcag3To2Equivalences = {
   [Wcag3Level.ko]: Wcag2Level.dnp,
 };
 
+export const Wcag3ConformanceLevels = ['bronze', 'silver', 'gold'] as const;
+export const Wcag3ConformanceLevelEnum = createEnum(Wcag3ConformanceLevels);
+
+export enum Wcag3Conformance {
+  bronze = 'bronze',
+  silver = 'silver',
+  gold = 'gold',
+}
+
+// Official APCA thresholds for Bronze (as of 2024 draft)
+export const Wcag3ContrastThresholds = {
+  bronze: {
+    body: 60,
+    large: 45,
+    nonText: 15,
+  },
+  // Silver and Gold: TBD (not finalized in spec)
+};
+

@@ -244,6 +244,32 @@ See [Demo](../../apps/demo-nodejs/src/index.ts) for example usage.
 
 ![Contrast Grid](../../docs/contrast.png)
 
+## WCAG 3 (APCA) Contrast Example
+
+You can check the APCA (WCAG 3) contrast grade for a color pair using the new bronze/silver/gold system:
+
+```ts
+import { wcag3ContrastGrade } from './src/color/contrast/wcag3/contrast-grade';
+
+const bg = '#ffffff';
+const fg = '#222222';
+
+// For body text (default)
+const grade = wcag3ContrastGrade(bg, fg); // 'bronze' | undefined
+
+// For large text
+const largeGrade = wcag3ContrastGrade(bg, fg, 'large'); // 'bronze' | undefined
+
+// For non-text elements
+const nonTextGrade = wcag3ContrastGrade(bg, fg, 'nonText'); // 'bronze' | undefined
+
+console.log('WCAG3 (APCA) grade for body:', grade);
+console.log('WCAG3 (APCA) grade for large:', largeGrade);
+console.log('WCAG3 (APCA) grade for nonText:', nonTextGrade);
+```
+
+If the grade is `undefined`, the color pair does not meet the minimum APCA threshold for bronze.
+
 ## Installation
 
 ```bash

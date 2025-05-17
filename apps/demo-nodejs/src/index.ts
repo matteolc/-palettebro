@@ -10,6 +10,8 @@ import {
   type Theme,
   isWcag2Readable,
   isWcag3Readable,
+  generateAPCAContrastTable,
+  formatAPCAContrastTable,
 } from '@palettebro/generator';
 
 /* Theme */
@@ -53,13 +55,19 @@ console.dir(
       size: 'large',
     }),
     isReadableWcag3: isWcag3Readable(bgColor, fgColor, {
-      level: '4',
+      level: 'bronze',
       size: 'large',
     }),
     contrastWcag2: Math.round(wcag2Contrast(bgColor, fgColor)),
     gradeWcag2: wcag2ContrastGrade(bgColor, fgColor),
     contrastWcag3: Math.round(wcag3Contrast(bgColor, fgColor)),
     gradeWcag3: wcag3ContrastGrade(bgColor, fgColor),
+    gradeWcag3Large: wcag3ContrastGrade(bgColor, fgColor, 'large'),
+    gradeWcag3NonText: wcag3ContrastGrade(bgColor, fgColor, 'nonText'),
   },
   { depth: null },
 );
+
+
+const table = generateAPCAContrastTable(bgColor, fgColor);
+console.log(formatAPCAContrastTable(table)); 
