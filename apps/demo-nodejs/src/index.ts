@@ -55,7 +55,6 @@ console.dir(
       size: 'large',
     }),
     isReadableWcag3: isWcag3Readable(bgColor, fgColor, {
-      level: 'bronze',
       size: 'large',
     }),
     contrastWcag2: Math.round(wcag2Contrast(bgColor, fgColor)),
